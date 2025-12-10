@@ -1,0 +1,20 @@
+/* Header Navbar */
+.header {
+  width: 100%;
+  background: hwb(0 2% 20%);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.header .links a:hover {
+  color: #ffe6e6;
+}
