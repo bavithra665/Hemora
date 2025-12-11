@@ -1,7 +1,9 @@
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./Pages/Home";
@@ -12,7 +14,7 @@ import DonorRegister from "./Pages/DonorRegister";
 import SearchDonor from "./Pages/SearchDonor";
 import Dashboard from "./Pages/Dashboard";
 
-const routerVariables = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -22,9 +24,10 @@ const routerVariables = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/donor-register", element: <DonorRegister /> },
-      { path: "/search-donor", element: <SearchDonor /> },
+      { path: "/search-donor", element: <SearchDonor /> }, // without param
+      { path: "/search-donor/:bloodGroup", element: <SearchDonor /> }, // with param
       { path: "/dashboard", element: <Dashboard /> },
-      { path: "*", element: <h1>Page Not Found</h1> },
+      { path: "*", element: <h1>404 - Page Not Found</h1> },
     ],
   },
 ]);
@@ -32,6 +35,8 @@ const routerVariables = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={routerVariables} />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
+
+reportWebVitals();

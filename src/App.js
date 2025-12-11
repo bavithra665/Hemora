@@ -1,29 +1,34 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import "./App.css";
+import donorData from "./searchdonor.json";
 
-function App() {
+export default function App() {
   return (
     <div>
-      <nav className="header">
-        <div className="logo">
-          <img src="https://via.placeholder.com/40x20" alt="Logo" />
-        </div>
-        <div className="links">
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/donor-register">Donor Register</Link>
-          <Link to="/search-donor">Search Donor</Link>
-          <Link to="/dashboard">Dashboard</Link>
-         
-        </div>
-      </nav>
+      <header
+        style={{
+          display: "flex",
+          justifyContent: "space-between", 
+          alignItems: "center",
+          padding: "10px 20px",
+          background: "#f2f2f2",
+        }}
+      >
+        <h1 style={{ margin: 0 }}>Hemora</h1>
+        <nav>
+          <Link to="/" style={{ margin: "0 10px" }}>Home</Link>
+          <Link to="/about" style={{ margin: "0 10px" }}>About</Link>
+          <Link to="/login" style={{ margin: "0 10px" }}>Login</Link>
+          <Link to="/register" style={{ margin: "0 10px" }}>Register</Link>
+          <Link to="/donor-register" style={{ margin: "0 10px" }}>Donor Register</Link>
+          <Link to="/search-donor" style={{ margin: "0 10px" }}>Search Donor</Link>
+          <Link to="/dashboard" style={{ margin: "0 10px" }}>Dashboard</Link>
+        </nav>
+      </header>
 
-      <Outlet />
+      <main style={{ padding: "20px" }}>
+        <Outlet context={donorData} /> 
+      </main>
     </div>
   );
 }
-
-export default App;

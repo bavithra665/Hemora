@@ -1,4 +1,4 @@
-/* Header Navbar */
+
 .header {
   width: 100%;
   background: hwb(0 2% 20%);
@@ -11,7 +11,7 @@
 .header .links a {
   margin: 0 12px;
   text-decoration: none;
-  color: white;
+  color: #ffffff;
   font-weight: bold;
 }
 
