@@ -1,0 +1,85 @@
+.registerContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #fff0f0, #ffe5e5);
+  padding: 40px 0;
+}
+
+.registerCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 40px;
+  width: 400px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.registerTitle {
+  color: #b30000;
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.registerSubtitle {
+  color: #990000;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #b30000;
+}
+
+.formGroup input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.formGroup input:focus {
+  border-color: #b30000;
+  box-shadow: 0 0 6px rgba(179, 0, 0, 0.3);
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.submitBtn {
+  padding: 12px 0;
+  background-color: #b30000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: #ff4d4d;
+}

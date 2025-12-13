@@ -1,8 +1,8 @@
 [
-  { "id": 1, "name": "John Doe", "bloodGroup": "A+", "lastDonation": "2025-11-15" },
-  { "id": 2, "name": "Jane Smith", "bloodGroup": "B+", "lastDonation": "2025-10-20" },
-  { "id": 3, "name": "Michael Johnson", "bloodGroup": "O+", "lastDonation": "2025-09-05" },
-  { "id": 4, "name": "Emily Davis", "bloodGroup": "AB-", "lastDonation": "2025-12-01" },
-  { "id": 5, "name": "David Wilson", "bloodGroup": "A-", "lastDonation": "2025-08-18" },
-  { "id": 6, "name": "Sophia Brown", "bloodGroup": "O-", "lastDonation": "2025-11-28" }
+  { "id": 1, "name": "Bavithra R", "bloodGroup": "O+", "lastDonation": "2025-11-15" },
+  { "id": 2, "name": "Sanjai R", "bloodGroup": "AB+", "lastDonation": "2025-10-20" },
+  { "id": 3, "name": "Lakshmi Prrabha R", "bloodGroup": "O+", "lastDonation": "2025-09-05" },
+  { "id": 4, "name": "Somitha S", "bloodGroup": "A+", "lastDonation": "2025-12-01" },
+  { "id": 5, "name": "Varsha B", "bloodGroup": "A-", "lastDonation": "2025-08-18" },
+  { "id": 6, "name": "Jimin K", "bloodGroup": "B+", "lastDonation": "2025-11-28" }
 ]

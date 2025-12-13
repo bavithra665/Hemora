@@ -1,75 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
 import "../styles/DonorRegister.css";
 
 const DonorRegister = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    gender: "",
-    bloodGroup: "",
-    phone: "",
-    email: "",
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
-    lastDonation: "",
-    medicalConditions: "",
-    emergencyName: "",
-    emergencyPhone: "",
-  });
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log("Donor Registered:", formData);
-
+  const onSubmit = (data) => {
+    console.log("Donor Registered:", data);
     alert("🎉 Donor Registered Successfully!");
-
-    setFormData({
-      name: "",
-      age: "",
-      gender: "",
-      bloodGroup: "",
-      phone: "",
-      email: "",
-      address: "",
-      city: "",
-      state: "",
-      pincode: "",
-      lastDonation: "",
-      medicalConditions: "",
-      emergencyName: "",
-      emergencyPhone: "",
-    });
+    reset();
   };
 
   return (
     <div className="regContainer">
-
       <div className="regCard">
-
         <h1 className="regTitle">Donor Registration Form</h1>
         <p className="regSubtitle">
           Please fill the details carefully to become a life saver ❤️
         </p>
 
-        <form className="regForm" onSubmit={handleSubmit}>
-          
+        <form className="regForm" onSubmit={handleSubmit(onSubmit)}>
+
           <div className="formGroup">
             <label>Name</label>
             <input
               type="text"
-              name="name"
               placeholder="Enter full name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+              {...register("name", { required: "Name is required" })}
             />
+            {errors.name && <p className="error">{errors.name.message}</p>}
           </div>
 
           <div className="formRow">
@@ -77,38 +36,27 @@ const DonorRegister = () => {
               <label>Age</label>
               <input
                 type="number"
-                name="age"
                 placeholder="18+"
-                value={formData.age}
-                onChange={handleChange}
-                required
+                {...register("age", { required: "Age is required", min: 18 })}
               />
+              {errors.age && <p className="error">{errors.age.message}</p>}
             </div>
 
             <div className="formGroup half">
               <label>Gender</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                required
-              >
+              <select {...register("gender", { required: "Gender is required" })}>
                 <option value="">Select</option>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
               </select>
+              {errors.gender && <p className="error">{errors.gender.message}</p>}
             </div>
           </div>
 
           <div className="formGroup">
             <label>Blood Group</label>
-            <select
-              name="bloodGroup"
-              value={formData.bloodGroup}
-              onChange={handleChange}
-              required
-            >
+            <select {...register("bloodGroup", { required: "Blood group is required" })}>
               <option value="">Select blood group</option>
               <option>O+</option>
               <option>O-</option>
@@ -119,41 +67,36 @@ const DonorRegister = () => {
               <option>AB+</option>
               <option>AB-</option>
             </select>
+            {errors.bloodGroup && <p className="error">{errors.bloodGroup.message}</p>}
           </div>
 
           <div className="formGroup">
             <label>Phone Number</label>
             <input
               type="text"
-              name="phone"
               placeholder="10-digit phone number"
-              value={formData.phone}
-              onChange={handleChange}
-              required
+              {...register("phone", { required: "Phone is required", minLength: 10, maxLength: 10 })}
             />
+            {errors.phone && <p className="error">{errors.phone.message}</p>}
           </div>
 
           <div className="formGroup">
             <label>Email</label>
             <input
               type="email"
-              name="email"
               placeholder="example@gmail.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              {...register("email", { required: "Email is required" })}
             />
+            {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
 
           <div className="formGroup">
             <label>Address</label>
             <textarea
-              name="address"
               placeholder="Enter full address"
-              value={formData.address}
-              onChange={handleChange}
-              required
+              {...register("address", { required: "Address is required" })}
             ></textarea>
+            {errors.address && <p className="error">{errors.address.message}</p>}
           </div>
 
           <div className="formRow">
@@ -161,22 +104,18 @@ const DonorRegister = () => {
               <label>City</label>
               <input
                 type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
+                {...register("city", { required: "City is required" })}
               />
+              {errors.city && <p className="error">{errors.city.message}</p>}
             </div>
 
             <div className="formGroup half">
               <label>State</label>
               <input
                 type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
+                {...register("state", { required: "State is required" })}
               />
+              {errors.state && <p className="error">{errors.state.message}</p>}
             </div>
           </div>
 
@@ -184,66 +123,45 @@ const DonorRegister = () => {
             <label>Pincode</label>
             <input
               type="text"
-              name="pincode"
-              value={formData.pincode}
-              onChange={handleChange}
-              required
+              {...register("pincode", { required: "Pincode is required" })}
             />
+            {errors.pincode && <p className="error">{errors.pincode.message}</p>}
           </div>
 
           <div className="formGroup">
             <label>Last Donation Date</label>
-            <input
-              type="date"
-              name="lastDonation"
-              value={formData.lastDonation}
-              onChange={handleChange}
-            />
+            <input type="date" {...register("lastDonation")} />
           </div>
 
           <div className="formGroup">
             <label>Medical Conditions</label>
-            <textarea
-              name="medicalConditions"
-              placeholder="Any allergies, illness, etc."
-              value={formData.medicalConditions}
-              onChange={handleChange}
-            ></textarea>
+            <textarea placeholder="Any allergies, illness, etc." {...register("medicalConditions")}></textarea>
           </div>
 
           <h3 className="emergencyHeading">Emergency Contact</h3>
-
           <div className="formGroup">
             <label>Contact Name</label>
             <input
               type="text"
-              name="emergencyName"
               placeholder="Guardian or family member"
-              value={formData.emergencyName}
-              onChange={handleChange}
-              required
+              {...register("emergencyName", { required: "Emergency name is required" })}
             />
+            {errors.emergencyName && <p className="error">{errors.emergencyName.message}</p>}
           </div>
 
           <div className="formGroup">
             <label>Contact Phone</label>
             <input
               type="text"
-              name="emergencyPhone"
               placeholder="Emergency contact number"
-              value={formData.emergencyPhone}
-              onChange={handleChange}
-              required
+              {...register("emergencyPhone", { required: "Emergency phone is required" })}
             />
+            {errors.emergencyPhone && <p className="error">{errors.emergencyPhone.message}</p>}
           </div>
 
-          <button type="submit" className="submitBtn">
-            Register Donor
-          </button>
-
+          <button type="submit" className="submitBtn">Register Donor</button>
         </form>
       </div>
-
     </div>
   );
 };
