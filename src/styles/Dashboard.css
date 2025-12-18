@@ -1,0 +1,102 @@
+.dashboardContainer {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #fff5f5, #ffe1e1);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  animation: fadeIn 0.7s ease-in-out;
+}
+
+.dashboardCard {
+  width: 95%;
+  max-width: 900px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
+  border-top: 5px solid #cc0000;
+  animation: slideUp 0.7s ease;
+}
+
+.dashboardTitle {
+  text-align: center;
+  font-size: 34px;
+  color: #b30000;
+  font-weight: 800;
+}
+
+.dashboardSubtitle {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+/* Sections */
+.sectionTitle {
+  color: #990000;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-left: 5px solid #b30000;
+  padding-left: 10px;
+}
+
+/* Chart */
+.chartSection {
+  margin-bottom: 40px;
+}
+
+/* Table */
+.tableSection {
+  overflow-x: auto;
+}
+
+.donorTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.donorTable th,
+.donorTable td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.donorTable th {
+  background: #b30000;
+  color: white;
+}
+
+.donorTable tr:hover {
+  background: #fff0f0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboardTitle {
+    font-size: 28px;
+  }
+}

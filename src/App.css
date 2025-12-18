@@ -1,18 +1,26 @@
-
 .header {
   width: 100%;
-  background: hwb(0 2% 20%);
-  padding: 15px;
+  background: #c20f33; 
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  color: #fff;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .header .links a {
   margin: 0 12px;
   text-decoration: none;
-  color: #ffffff;
+  color: #fff;
   font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 .header .links a:hover {
