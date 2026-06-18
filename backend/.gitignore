@@ -1,0 +1,5 @@
+node_modules/
+config.env
+app.py
+requirements.txt
+sample_energy_data.csv
