@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import DonorCard from "../components/DonorCard";
 import "../styles/Home.css";
 
 const Home = ({ donors = [] }) => {
   return (
     <div className="homeContainer">
-
       <div className="heroSection">
         <h1 className="heroTitle">Donate Blood, Save Lives!</h1>
         <p className="heroSubtitle">
@@ -16,7 +14,7 @@ const Home = ({ donors = [] }) => {
           Become a Donor
         </Link>
       </div>
-
+      
       <div className="aboutSection">
         <h2 className="aboutTitle1">About Hemora</h2>
         <p className="aboutText">
@@ -58,8 +56,13 @@ const Home = ({ donors = [] }) => {
 
       <h3 className="subTitle">Top Donor List:</h3>
       <div className="cardWrapper">
-        {donors.map((donor) => (
-          <DonorCard key={donor.id} donor={donor} />
+        {donors.map((donor, index) => (
+          <div className="donorCard" key={index}>
+            <h4>{donor.name}</h4>
+            <p>Blood Group: {donor.bloodGroup}</p>
+            <p>City: {donor.city}</p>
+            <p>Last Donation: {donor.lastDonation || "N/A"}</p>
+          </div>
         ))}
       </div>
 
@@ -74,7 +77,7 @@ const Home = ({ donors = [] }) => {
       </div>
 
       <footer className="footer">
-        © 2025 Hemora Blood Donation System — All Rights Reserved
+        <a>Bavi</a> © 2025 Hemora Blood Donation System — All Rights Reserved
       </footer>
 
     </div>

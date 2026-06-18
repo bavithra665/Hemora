@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../styles/Login.css";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +15,11 @@ export default function Login() {
       alert("Please enter both email and password");
       return;
     }
-    alert(`Login Successful!\nEmail: ${email}`);
+
+    login();  
+
+    
+    navigate("/donor-register");
   };
 
   return (
@@ -32,7 +40,9 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className="login-btn">Login</button>
+        <button type="submit" className="login-btn">
+          Login
+        </button>
         <p className="register-text">
           Don't have an account? <a href="/register">Register</a>
         </p>

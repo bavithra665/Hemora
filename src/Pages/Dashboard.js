@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/Dashboard.css";
+import axios from "axios";
 import {
   PieChart,
   Pie,
@@ -8,24 +9,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-/* Sample Data – later replace with backend API */
-const bloodData = [
-  { name: "O+", value: 45 },
-  { name: "A+", value: 30 },
-  { name: "B+", value: 20 },
-  { name: "AB+", value: 10 },
-  { name: "O-", value: 8 },
-  { name: "A-", value: 6 },
-];
-
-const donors = [
-  { name: "Arun", blood: "O+", city: "Chennai", date: "12-08-2025" },
-  { name: "Priya", blood: "A+", city: "Trichy", date: "08-08-2025" },
-  { name: "Karthik", blood: "B+", city: "Madurai", date: "02-08-2025" },
-  { name: "Meena", blood: "AB+", city: "Salem", date: "30-07-2025" },
-  { name: "Suresh", blood: "O-", city: "Coimbatore", date: "28-07-2025" },
-];
 
 const COLORS = [
   "#cc0000",
@@ -37,6 +20,39 @@ const COLORS = [
 ];
 
 export default function Dashboard() {
+  const [donors, setDonors] = useState([]);
+  const [bloodData, setBloodData] = useState([]);
+
+  // 🔹 Fetch donors from backend
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/donors") // ✅ corrected route
+      .then((res) => {
+        setDonors(res.data);
+        generateBloodChart(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // 🔹 Generate pie chart data from donor list
+  const generateBloodChart = (donorList) => {
+    const bloodCount = {};
+
+    donorList.forEach((donor) => {
+      if (donor.bloodGroup) {
+        bloodCount[donor.bloodGroup] =
+          (bloodCount[donor.bloodGroup] || 0) + 1;
+      }
+    });
+
+    const chartData = Object.keys(bloodCount).map((key) => ({
+      name: key,
+      value: bloodCount[key],
+    }));
+
+    setBloodData(chartData);
+  };
+
   return (
     <div className="dashboardContainer">
       <div className="dashboardCard">
@@ -49,28 +65,32 @@ export default function Dashboard() {
         <div className="chartSection">
           <h2 className="sectionTitle">Most Donated Blood Groups</h2>
 
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={bloodData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                label
-              >
-                {bloodData.map((entry, index) => (
-                  <Cell
-                    key={index}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
+          {bloodData.length === 0 ? (
+            <p style={{ textAlign: "center" }}>No data available</p>
+          ) : (
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={bloodData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={100}
+                  label
+                >
+                  {bloodData.map((entry, index) => (
+                    <Cell
+                      key={index}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          )}
         </div>
 
         {/* Donor Table Section */}
@@ -87,14 +107,26 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {donors.map((donor, index) => (
-                <tr key={index}>
-                  <td>{donor.name}</td>
-                  <td>{donor.blood}</td>
-                  <td>{donor.city}</td>
-                  <td>{donor.date}</td>
+              {donors.length === 0 ? (
+                <tr>
+                  <td colSpan="4" style={{ textAlign: "center" }}>
+                    No donors found
+                  </td>
                 </tr>
-              ))}
+              ) : (
+                donors.map((donor) => (
+                  <tr key={donor._id}>
+                    <td>{donor.name}</td>
+                    <td>{donor.bloodGroup}</td>
+                    <td>{donor.city}</td>
+                    <td>
+                      {donor.lastDonation
+                        ? new Date(donor.lastDonation).toLocaleDateString()
+                        : "—"}
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
